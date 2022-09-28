@@ -3,14 +3,14 @@ import QuestionItem from "./QuestionItem";
 function QuestionList({data}) {
   const [questions,setQuestions]= useState([]);
   useEffect(()=>{
-    fetch('http://localhost:3000/questions')
+    fetch('http://localhost:4000/questions')
     .then(data=>data.json())
     .then((res)=>{
       setQuestions(res);
     })
   },[]);
   const onDelete=(id)=>{
-    fetch(`http://localhost:3000/questions/${id}`,{
+    fetch(`http://localhost:4000/questions/${id}`,{
     method: 'DELETE',
 
   })
@@ -21,12 +21,12 @@ function QuestionList({data}) {
   })
   }
   const handleAnswers=({id, correctIndex})=>{
-    fetch(`http://localhost:3000/questions/${id}`,{
+    fetch(`http://localhost:4000/questions/${id}`,{
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
     },
-   body:JSON.stringfy({correctIndex}),
+   body:JSON.stringify({correctIndex}),
   })
   .then(data=>data.json())
   .then(data=>{
